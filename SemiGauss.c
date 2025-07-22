@@ -26,12 +26,17 @@ int main(int argc,char* argv[]){
             media+=(double)b[i]/a;
             //printf("%d\n",b[i]);
         }
+        FILE *arch;
+        arch=fopen("datos.txt","w");
         double stddev=sdev(b,a,media);
         for(int i=0;i<a;i++){
             double c=normal(b[i],stddev,media);
             if(c<0) c=-c;
+            fprintf(arch,"%d\n",(int)(100000*c));
             //printf("%.2f\n",200-c*100);
-            printf("%d\n",(int)((c)*100000));
+            //printf("%d\n",(int)((c)*100000));
         }
+        fclose(arch);
     }
+    return 0;
 }
